@@ -50,7 +50,7 @@ class FoxFinancialAI {
 
     // Fetch real-time stock price from Yahoo Finance API
     async getRealStockPrice(ticker) {
-        const apiKey = "8a5a6d83aemshc1932fb3028c609p117effjsn769029e7fd22'";  // Replace with your actual RapidAPI key
+        const apiKey = "8a5a6d83aemshc1932fb3028c609p117effjsn769029e7fd22";  // Replace with your actual RapidAPI key
         const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${ticker}&region=US`;
 
         try {
