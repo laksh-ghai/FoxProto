@@ -141,22 +141,7 @@ async fetchLiveMarketNews_old1() {
 }
 
 async function fetchLiveMarketNews() {
-    const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";
-    const url = `https://corsproxy.io/?https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
 
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`News API Error: ${response.status} ${response.statusText}`);
-        }
-
-        const newsData = await response.json();
-        let headlines = newsData.articles.slice(0, 3).map(article => `🔹 ${article.title}`);
-        document.getElementById("news").innerHTML = headlines.join("<br>");
-    } catch (error) {
-        document.getElementById("news").innerHTML = "Error fetching news - " + error;
-        console.error("Error fetching news:", error);
-    }
 }
 
 
