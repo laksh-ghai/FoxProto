@@ -96,6 +96,7 @@ class FoxFinancialAI {
             document.getElementById("news").innerHTML = headlines;
             return headlines.length ? headlines : ["❌ No recent news found."];
         } catch (error) {
+             document.getElementById("news").innerHTML = "Error fetching news:", error;
             console.error("Error fetching news:", error);
             return ["❌ Could not fetch live news."];
         }
