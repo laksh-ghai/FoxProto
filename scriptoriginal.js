@@ -81,7 +81,7 @@ class FoxFinancialAI {
     }
 
     // Fetch latest business news from NewsAPI
-    async fetchLiveMarketNews() {
+    async fetchLiveMarketNews_old() {
         const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with your actual NewsAPI key
         const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
 alert("1")          
@@ -115,7 +115,43 @@ alert("5")
         }
     }
 }
+//--------------------------
 
+
+async fetchLiveMarketNews() {
+    const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with a valid API key
+    const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)",
+                "Accept": "application/json",
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`News API Error: ${response.status} ${response.statusText}`);
+        }
+
+        const newsData = await response.json();
+        let headlines = newsData.articles.slice(0, 3).map(article => `🔹 ${article.title}`);
+        document.getElementById("news").innerHTML = headlines.join("<br>");
+        return headlines.length ? headlines : ["❌ No recent news found."];
+
+    } catch (error) {
+        document.getElementById("news").innerHTML = "Error fetching news";
+        console.error("Error fetching news:", error);
+        return ["❌ Could not fetch live news."];
+    }
+}
+
+
+
+
+
+//--------------------
 // ---------------------- MAIN PROGRAM ----------------------
 
 // Initialize FOX AI
