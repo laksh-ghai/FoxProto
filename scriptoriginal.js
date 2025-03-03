@@ -50,7 +50,7 @@ class FoxFinancialAI {
 
     // Fetch real-time stock price from Yahoo Finance API
     async getRealStockPrice(ticker) {
-        const apiKey = "your_actual_rapidapi_key_here";  // Replace with your actual RapidAPI key
+        const apiKey = "8a5a6d83aemshc1932fb3028c609p117effjsn769029e7fd22'";  // Replace with your actual RapidAPI key
         const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${ticker}&region=US`;
 
         try {
@@ -82,7 +82,7 @@ class FoxFinancialAI {
 
     // Fetch latest business news from NewsAPI
     async fetchLiveMarketNews() {
-        const newsApiKey = "your_actual_newsapi_key_here";  // Replace with your actual NewsAPI key
+        const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with your actual NewsAPI key
         const url = `https://newsapi.org/v2/top-headlines?category=business&apiKey=${newsApiKey}`;
 
         try {
