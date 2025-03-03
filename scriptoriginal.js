@@ -117,7 +117,7 @@ alert("ORI_4")
 const foxAI = new FoxFinancialAI();
 
 // Function to run FOX AI in the web interface
-async function getStockData() {
+async function getStockData1() {
     let ticker = document.getElementById("stockTicker").value.toUpperCase().trim();
     
     if (!ticker) {
