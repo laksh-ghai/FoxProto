@@ -84,21 +84,21 @@ class FoxFinancialAI {
     async fetchLiveMarketNews() {
         const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with your actual NewsAPI key
         const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
-ALERT("1")          
+alert("1")          
         try {
             const response = await fetch(url);
             if (!response.ok) {
                 throw new Error(`News API Error: ${response.status} ${response.statusText}`);
             }
-ALERT("2")          
+alert("2")          
             const newsData = await response.json();
-ALERT("3")          
+alert("3")          
             let headlines = newsData.articles.slice(0, 3).map(article => `🔹 ${article.title}`);
             document.getElementById("news").innerHTML = headlines;
             return headlines.length ? headlines : ["❌ No recent news found."];
-ALERT("4")          
+alert("4")          
         } catch (error) {
-ALERT("5")          
+alert("5")          
              document.getElementById("news").innerHTML = "Error fetching news:", error;
             console.error("Error fetching news:", error);
             return ["❌ Could not fetch live news."];
