@@ -105,17 +105,10 @@ alert("5")
         }
     }
 
-    // Provides investment recommendations based on risk assessment
-    investmentAdvice(investmentChoice) {
-        if (this.riskFactors[investmentChoice]) {
-            let data = this.riskFactors[investmentChoice];
-            return `${data.risk} - ${data.reason}`;
-        } else {
-            return `⚠️ No specific risk data found for '${investmentChoice}'. Proceed with due diligence.`;
-        }
-    }
-}
-//--------------------------
+
+
+
+    //--------------------------
 
 
 async fetchLiveMarketNews() {
@@ -152,6 +145,21 @@ async fetchLiveMarketNews() {
 
 
 //--------------------
+
+
+
+
+    
+    // Provides investment recommendations based on risk assessment
+    investmentAdvice(investmentChoice) {
+        if (this.riskFactors[investmentChoice]) {
+            let data = this.riskFactors[investmentChoice];
+            return `${data.risk} - ${data.reason}`;
+        } else {
+            return `⚠️ No specific risk data found for '${investmentChoice}'. Proceed with due diligence.`;
+        }
+    }
+}
 // ---------------------- MAIN PROGRAM ----------------------
 
 // Initialize FOX AI
