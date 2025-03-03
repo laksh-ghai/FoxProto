@@ -1,3 +1,6 @@
+const express = require("express");
+const fetch = require("node-fetch");
+
 // ---------------------- FOX: FINANCIAL INTELLIGENCE ----------------------
 
 // FOX AI class for financial intelligence
@@ -140,9 +143,7 @@ async fetchLiveMarketNews_old1() {
     }
 }
 
-async fetchLiveMarketNews_old1() {
-const express = require("express");
-const fetch = require("node-fetch");
+async fetchLiveMarketNews() {
 const app = express();
 
 app.get("/get-news", async (req, res) => {
