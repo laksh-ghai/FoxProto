@@ -114,7 +114,7 @@ class FoxFinancialAI {
 // ---------------------- MAIN PROGRAM ----------------------
 
 // Initialize FOX AI
-const foxAI = new FoxFinancialAI();
+//const foxAI = new FoxFinancialAI();
 
 // Function to run FOX AI in the web interface
 async function getStockData() {
