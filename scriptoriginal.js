@@ -52,7 +52,7 @@ class FoxFinancialAI {
     async getRealStockPrice(ticker) {
         const apiKey = "8a5a6d83aemshc1932fb3028c609p117effjsn769029e7fd22'";  // Replace with your actual RapidAPI key
         const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${ticker}&region=US`;
-alert("ORI_3")
+
         try {
             const response = await fetch(url, {
                 method: "GET",
@@ -61,7 +61,7 @@ alert("ORI_3")
                     "X-RapidAPI-Host": "apidojo-yahoo-finance-v1.p.rapidapi.com"
                 }
             });
-alert("ORI_4")
+
             if (!response.ok) {
                 throw new Error(`Stock API Error: ${response.status} ${response.statusText}`);
             }
@@ -93,6 +93,7 @@ alert("ORI_4")
 
             const newsData = await response.json();
             let headlines = newsData.articles.slice(0, 3).map(article => `🔹 ${article.title}`);
+            document.getElementById("news").innerHTML = headlines;
             return headlines.length ? headlines : ["❌ No recent news found."];
         } catch (error) {
             console.error("Error fetching news:", error);
