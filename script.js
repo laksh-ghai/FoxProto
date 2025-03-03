@@ -44,6 +44,10 @@ async function getStockData() {
                 <b>50-Day High </b> $${fiftyHigh} <br>
                 <b>50-Day Low </b> $${fiftyLow} <br>             
                 `;
+
+            document.getElementById("news").innerHTML = "Manav";
+
+                
         } else {
             document.getElementById("result").innerHTML = "❌ Invalid stock ticker.";
             return;
