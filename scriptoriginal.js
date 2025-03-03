@@ -1,0 +1,145 @@
+// ---------------------- FOX: FINANCIAL INTELLIGENCE ----------------------
+
+// FOX AI class for financial intelligence
+class FoxFinancialAI {
+    constructor() {
+        // Initialize FOX AI with investment categories and reasoning
+        this.riskFactors = {
+            "Russian Oil": {
+                risk: "⚠️ High Risk",
+                reason: "Ongoing war and international sanctions make this investment highly volatile and unpredictable."
+            },
+            "Cryptocurrency": {
+                risk: "⚠️ Moderate Risk",
+                reason: "Crypto markets are highly volatile, and regulatory crackdowns could impact prices."
+            },
+            "Tech Stocks": {
+                risk: "✅ Low Risk",
+                reason: "Technology companies show stable growth, but beware of market corrections."
+            },
+            "Real Estate": {
+                risk: "✅ Stable Investment",
+                reason: "Real estate offers long-term stability, but location and market cycles matter."
+            },
+            "AI Companies": {
+                risk: "✅ Promising Investment",
+                reason: "AI is shaping the future, but there are regulatory risks and market speculation."
+            },
+            "Green Energy": {
+                risk: "🌱 Ethical & Growing Investment",
+                reason: "Governments and corporations are pushing for sustainability, but upfront costs are high."
+            },
+            "Gold": {
+                risk: "🏆 Safe Haven Asset",
+                reason: "Gold remains stable during economic downturns but has slower long-term growth."
+            },
+            "Bonds": {
+                risk: "✅ Low Risk",
+                reason: "Bonds provide steady returns, but inflation can reduce real profits."
+            },
+            "Silver": {
+                risk: "⚠️ Moderate Risk",
+                reason: "Silver is influenced by industrial demand and inflation, making it more volatile than gold."
+            },
+            "Index Funds": {
+                risk: "✅ Low Risk",
+                reason: "Index funds track the market, offering diversification and lower volatility."
+            }
+        };
+    }
+
+    // Fetch real-time stock price from Yahoo Finance API
+    async getRealStockPrice(ticker) {
+        const apiKey = "your_actual_rapidapi_key_here";  // Replace with your actual RapidAPI key
+        const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${ticker}&region=US`;
+
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "X-RapidAPI-Key": apiKey,
+                    "X-RapidAPI-Host": "apidojo-yahoo-finance-v1.p.rapidapi.com"
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`Stock API Error: ${response.status} ${response.statusText}`);
+            }
+
+            const data = await response.json();
+            if (data.quoteResponse && data.quoteResponse.result.length > 0) {
+                let stock = data.quoteResponse.result[0];
+                let price = stock.regularMarketPrice.toFixed(2);
+                return `📈 Live price of ${ticker}: $${price}`;
+            } else {
+                return `❌ Could not fetch stock price for ${ticker}.`;
+            }
+        } catch (error) {
+            console.error("Error fetching stock price:", error);
+            return `❌ Could not fetch stock price. Error: ${error.message}`;
+        }
+    }
+
+    // Fetch latest business news from NewsAPI
+    async fetchLiveMarketNews() {
+        const newsApiKey = "your_actual_newsapi_key_here";  // Replace with your actual NewsAPI key
+        const url = `https://newsapi.org/v2/top-headlines?category=business&apiKey=${newsApiKey}`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`News API Error: ${response.status} ${response.statusText}`);
+            }
+
+            const newsData = await response.json();
+            let headlines = newsData.articles.slice(0, 3).map(article => `🔹 ${article.title}`);
+            return headlines.length ? headlines : ["❌ No recent news found."];
+        } catch (error) {
+            console.error("Error fetching news:", error);
+            return ["❌ Could not fetch live news."];
+        }
+    }
+
+    // Provides investment recommendations based on risk assessment
+    investmentAdvice(investmentChoice) {
+        if (this.riskFactors[investmentChoice]) {
+            let data = this.riskFactors[investmentChoice];
+            return `${data.risk} - ${data.reason}`;
+        } else {
+            return `⚠️ No specific risk data found for '${investmentChoice}'. Proceed with due diligence.`;
+        }
+    }
+}
+
+// ---------------------- MAIN PROGRAM ----------------------
+
+// Initialize FOX AI
+const foxAI = new FoxFinancialAI();
+
+// Function to run FOX AI in the web interface
+async function getStockData() {
+    let ticker = document.getElementById("stockTicker").value.toUpperCase().trim();
+    
+    if (!ticker) {
+        alert("Please enter a stock ticker!");
+        return;
+    }
+
+    document.getElementById("result").innerHTML = "⏳ Fetching stock price...";
+    let stockPrice = await foxAI.getRealStockPrice(ticker);
+    document.getElementById("result").innerHTML = stockPrice;
+
+    document.getElementById("news").innerHTML = "⏳ Fetching latest news...";
+    let newsHeadlines = await foxAI.fetchLiveMarketNews();
+    document.getElementById("news").innerHTML = newsHeadlines.join("<br>");
+}
+
+async function getInvestmentAdvice() {
+    let investmentChoice = document.getElementById("investmentChoice").value.trim();
+    if (!investmentChoice) {
+        alert("Please enter an investment type!");
+        return;
+    }
+
+    document.getElementById("advice").innerHTML = `💡 FOX Advice: ${foxAI.investmentAdvice(investmentChoice)}`;
+}
