@@ -27,6 +27,7 @@ async function getStockData() {
         const priceData = await priceResponse.json();
 alert("2")
         if (priceData.quoteResponse && priceData.quoteResponse.result.length > 0) {
+            alert("3")
             let stock = priceData.quoteResponse.result[0];
             let price = stock.regularMarketPrice;
             let change = stock.regularMarketChangePercent.toFixed(2);
@@ -48,8 +49,9 @@ alert("2")
             return;
         }
 
-        
+        alert("4")
     } catch (error) {
+        alert("5")
         console.error("Error fetching stock data:", error);
         document.getElementById("result").innerHTML = "❌ Could not fetch stock data.";
         document.getElementById("stats").innerHTML = "";
