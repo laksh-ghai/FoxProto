@@ -83,8 +83,8 @@ class FoxFinancialAI {
     // Fetch latest business news from NewsAPI
     async fetchLiveMarketNews() {
         const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with your actual NewsAPI key
-        const url = `https://newsapi.org/v2/top-headlines?category=business&apiKey=${newsApiKey}`;
-
+        const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
+                     
         try {
             const response = await fetch(url);
             if (!response.ok) {
