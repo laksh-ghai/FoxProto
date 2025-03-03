@@ -44,14 +44,15 @@ alert("2")
                 <b>50-Day High </b> $${fiftyHigh} <br>
                 <b>50-Day Low </b> $${fiftyLow} <br>             
                 `;
+            alert("4")
         } else {
             document.getElementById("result").innerHTML = "❌ Invalid stock ticker.";
             return;
         }
 
-        alert("4")
-    } catch (error) {
         alert("5")
+    } catch (error) {
+        alert("6")
         console.error("Error fetching stock data:", error);
         document.getElementById("result").innerHTML = "❌ Could not fetch stock data.";
         document.getElementById("stats").innerHTML = "";
