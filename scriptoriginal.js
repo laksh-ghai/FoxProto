@@ -52,7 +52,7 @@ class FoxFinancialAI {
     async getRealStockPrice(ticker) {
         const apiKey = "8a5a6d83aemshc1932fb3028c609p117effjsn769029e7fd22";  // Replace with your actual RapidAPI key
         const url = `https://apidojo-yahoo-finance-v1.p.rapidapi.com/market/v2/get-quotes?symbols=${ticker}&region=US`;
-        alert(url);
+      
         try {
             const response = await fetch(url, {
                 method: "GET",
@@ -114,7 +114,7 @@ alert("5")
 async fetchLiveMarketNews() {
     const newsApiKey = "ba8186f17c2b4545869eebe25700a2db";  // Replace with a valid API key
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${newsApiKey}`;
-
+      alert(url);
     try {
         const response = await fetch(url, {
             method: "GET",
