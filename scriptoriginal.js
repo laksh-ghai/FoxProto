@@ -9,6 +9,10 @@ class FoxFinancialAI {
                 risk: "⚠️ High Risk",
                 reason: "Ongoing war and international sanctions make this investment highly volatile and unpredictable."
             },
+            "Oil companies located in Russia": {
+                risk: "⚠️ High Risk",
+                reason: "Ongoing war and international sanctions make this investment highly volatile and unpredictable."
+            },
             "Cryptocurrency": {
                 risk: "⚠️ Moderate Risk",
                 reason: "Crypto markets are highly volatile, and regulatory crackdowns could impact prices."
