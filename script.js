@@ -22,9 +22,10 @@ async function getStockData() {
 
     try {
         // Fetch stock price
+        alert("1")
         const priceResponse = await fetch(priceUrl, options);
         const priceData = await priceResponse.json();
-
+alert("2")
         if (priceData.quoteResponse && priceData.quoteResponse.result.length > 0) {
             let stock = priceData.quoteResponse.result[0];
             let price = stock.regularMarketPrice;
